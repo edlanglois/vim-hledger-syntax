@@ -49,7 +49,7 @@ highlight link patternAmountQuantity1 Number
 syntax match patternAmountQuantity2 '\v-?\d+([ ,.]\d+)*(\.\d+)?' contained nextgroup=patternAssertionEq skipwhite
 highlight link patternAmountQuantity2 Number
 
-syntax match patternAssertionEq '\v\=\=?' contained nextgroup=patternAssertionMinus,patternAssertionType1,patternAssertionQuantity1 skipwhite
+syntax match patternAssertionEq '\v\=\=?\*?' contained nextgroup=patternAssertionMinus,patternAssertionType1,patternAssertionQuantity1 skipwhite
 highlight link patternAssertionEq Operator
 
 syntax match patternAssertionType1 '\v[^-0-9 \t]+' contained nextgroup=patternAssertionQuantity2 skipwhite
