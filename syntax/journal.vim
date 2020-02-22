@@ -36,18 +36,21 @@ syntax match patternAmountType1 '\v[^-0-9 \t]+' contained nextgroup=patternAmoun
 syntax match patternAmountType1 '\v"[^"]*"' contained nextgroup=patternAmountQuantity2 skipwhite
 highlight link patternAmountType1 Type
 
-syntax match patternAmountType2 '\v[^-0-9 \t]+' contained nextgroup=patternAssertionEq skipwhite
-syntax match patternAmountType2 '\v"[^"]*"' contained nextgroup=patternAssertionEq skipwhite
+syntax match patternAmountType2 '\v[^-0-9 \t]+' contained nextgroup=patternAssertionEq,patternAmountPriceAt skipwhite
+syntax match patternAmountType2 '\v"[^"]*"' contained nextgroup=patternAssertionEq,patternAmountPriceAt skipwhite
 highlight link patternAmountType2 Type
 
 syntax match patternAmountMinus '-' contained nextgroup=patternAmountType1
 highlight link patternAmountMinus Number
 
-syntax match patternAmountQuantity1 '\v-?\d+([ ,.]\d+)*(\.\d+)?' contained nextgroup=patternAmountType2,patternAssertionEq skipwhite
+syntax match patternAmountQuantity1 '\v-?\d+([ ,.]\d+)*(\.\d+)?' contained nextgroup=patternAmountType2,patternAssertionEq,patternAmountPriceAt skipwhite
 highlight link patternAmountQuantity1 Number
 
-syntax match patternAmountQuantity2 '\v-?\d+([ ,.]\d+)*(\.\d+)?' contained nextgroup=patternAssertionEq skipwhite
+syntax match patternAmountQuantity2 '\v-?\d+([ ,.]\d+)*(\.\d+)?' contained nextgroup=patternAssertionEq,patternAmountPriceAt skipwhite
 highlight link patternAmountQuantity2 Number
+
+syntax match patternAmountPriceAt '\v\@\@?' contained nextgroup=patternAmountMinus,patternAmountType1,patternAmountQuantity1 skipwhite
+highlight link patternAmountPriceAt Operator
 
 syntax match patternAssertionEq '\v\=\=?\*?' contained nextgroup=patternAssertionMinus,patternAssertionType1,patternAssertionQuantity1 skipwhite
 highlight link patternAssertionEq Operator
